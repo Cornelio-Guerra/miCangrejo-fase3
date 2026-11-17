@@ -1,0 +1,34 @@
+{
+  "entities": [
+    {"code": "AAUD", "name": "Autoridad de Aseo Urbano y Domiciliario (AAUD)", "email": "aaud@demo.micangrejo.local"},
+    {"code": "ATTT", "name": "Autoridad del Tránsito y Transporte Terrestre (ATTT)", "email": "attt@demo.micangrejo.local"},
+    {"code": "JUEZ_PAZ", "name": "Juez de Paz de Bella Vista", "email": "juezdepaz@demo.micangrejo.local"},
+    {"code": "POLICIA", "name": "Policía Nacional", "email": "policia@demo.micangrejo.local"},
+    {"code": "ALCALDIA", "name": "Alcaldía de Panamá", "email": "alcaldia@demo.micangrejo.local"},
+    {"code": "ENSA", "name": "ENSA (distribución eléctrica y alumbrado)", "email": "ensa@demo.micangrejo.local"},
+    {"code": "IDAAN", "name": "IDAAN (agua y alcantarillado)", "email": "idaan@demo.micangrejo.local"},
+    {"code": "MINSA", "name": "Ministerio de Salud (MINSA)", "email": "minsa@demo.micangrejo.local"}
+  ],
+  "categories": ["Basura", "Estacionamiento", "Ruido", "Seguridad", "Alumbrado o aceras", "Otro"],
+  "routing": [
+    {"category": "Basura", "entity": "AAUD", "responsibility": "Recolección y limpieza del punto"},
+    {"category": "Basura", "entity": "ALCALDIA", "responsibility": "Ornato y sanción por disposición indebida"},
+    {"category": "Estacionamiento", "entity": "ATTT", "responsibility": "Grúa, infracción y control vial"},
+    {"category": "Ruido", "entity": "JUEZ_PAZ", "responsibility": "Proceso comunitario por ruido"},
+    {"category": "Ruido", "entity": "POLICIA", "responsibility": "Atención inmediata en horario nocturno"},
+    {"category": "Seguridad", "entity": "POLICIA", "responsibility": "Patrullaje y atención del incidente"},
+    {"category": "Alumbrado o aceras", "entity": "ALCALDIA", "responsibility": "Reparación de acera o luminaria municipal"},
+    {"category": "Otro", "entity": "ALCALDIA", "responsibility": "Canalizar a la entidad competente"}
+  ],
+  "keywords": {
+    "Basura": ["basura", "bazura", "desecho", "tinaco", "contenedor", "escombro", "reciclaje", "aseo", "bolsa"],
+    "Estacionamiento": ["estacionado", "estacionamiento", "carro", "auto", "vehículo", "vehiculo", "acera bloqueada", "mal parqueado", "parqueado", "grúa", "grua"],
+    "Ruido": ["ruido", "música", "musica", "fiesta", "bulla", "escándalo", "escandalo", "parlante", "bocina"],
+    "Seguridad": ["robo", "asalto", "sospechoso", "pelea", "violencia", "drogas", "inseguridad", "arma"],
+    "Alumbrado o aceras": ["alumbrado", "luminaria", "poste", "lámpara", "lampara", "farol", "acera", "hueco", "bache", "rampa"]
+  },
+  "urgency_keywords": {
+    "Alta": ["urgente", "peligro", "herido", "incendio", "arma", "asalto", "robo", "violencia", "ahora mismo", "emergencia"],
+    "Baja": ["leve", "menor", "cuando puedan", "sin prisa"]
+  }
+}

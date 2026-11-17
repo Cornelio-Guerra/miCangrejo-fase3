@@ -1,0 +1,46 @@
+# miCangrejo — archivos que Vercel no necesita para construir ni ejecutar.
+# Misma sintaxis que .gitignore. Complementa a vercel.json (excludeFiles del backend).
+
+# Dependencias y entornos locales
+node_modules
+.venv
+venv
+env
+
+# Artefactos de Python
+__pycache__
+*.py[cod]
+*.egg-info
+.pytest_cache
+.mypy_cache
+.ruff_cache
+
+# Salidas de build locales (Vercel construye de nuevo)
+frontend/dist
+build
+.vite
+
+# Base de datos local (modo de contingencia) y respaldos
+*.db
+*.sqlite
+*.sqlite3
+*.dump
+backend/data
+
+# Pruebas y scripts de apoyo
+backend/tests
+backend/scripts
+tests
+
+# Documentos de trabajo del equipo (no se sirven)
+docs
+
+# Credenciales y archivos del sistema
+.env
+.env.*
+!.env.example
+.DS_Store
+Thumbs.db
+*.log
+.idea
+.vscode
