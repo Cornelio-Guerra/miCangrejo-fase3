@@ -102,6 +102,30 @@ body {
   animation: micangrejo-aparecer 320ms ease-out both;
 }
 
+/* 1.er lugar en el II Reto Emprende 2026: confeti y medalla de la pantalla de entrada (ver LoginScreen). */
+@keyframes micangrejo-confeti {
+  0% { opacity: 0; transform: translateY(-14vh) rotate(0deg); }
+  10% { opacity: 1; }
+  100% { opacity: 0.95; transform: translate3d(var(--deriva, 0px), 114vh, 0) rotate(var(--giro, 540deg)); }
+}
+
+@keyframes micangrejo-medalla {
+  0%, 100% { transform: rotate(-3deg); }
+  50% { transform: rotate(3deg); }
+}
+
+.confeti-pieza {
+  position: absolute;
+  top: 0;
+  border-radius: 1px;
+  will-change: transform;
+  animation: micangrejo-confeti var(--duracion, 6s) linear var(--retraso, 0s) infinite;
+}
+
+.medalla-premio {
+  animation: micangrejo-medalla 2.8s ease-in-out infinite;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .micangrejo-carta-enviada {
     animation: micangrejo-aparecer 160ms ease-out reverse both;
@@ -109,6 +133,15 @@ body {
 
   .micangrejo-aparece {
     animation-duration: 160ms;
+  }
+
+  .confeti-pieza {
+    opacity: 0;
+    animation: none;
+  }
+
+  .medalla-premio {
+    animation: none;
   }
 }
 

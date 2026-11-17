@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import type { FormEvent, ReactNode } from 'react'
 import type { LucideIcon } from 'lucide-react'
-import { ArrowRight, Compass, Eye, EyeOff, House, Lock, Mail, ShieldCheck, User } from 'lucide-react'
+import { ArrowRight, Compass, Eye, EyeOff, House, Lock, Mail, Medal, ShieldCheck, User } from 'lucide-react'
 
 import { FueraDeAlcance } from '@/components/FueraDeAlcance'
 import { Marginalia, RulerTicks, placeMark, sans, serif, t, todayMark } from '@/design/tokens'
@@ -42,6 +42,35 @@ function nameFromEmail(email: string) {
   return email.split('@')[0].replace(/[._-]+/g, ' ').trim() || 'Residente'
 }
 
+// Confeti por el 1.er lugar en el II Reto Emprende 2026. Decorativo: no recibe clics ni lo anuncian los
+// lectores de pantalla, y se apaga con prefers-reduced-motion (index.css).
+function Confeti({ piezas = 70 }: { piezas?: number }) {
+  const [lista] = useState(() =>
+    Array.from({ length: piezas }, (_, id) => ({
+      id,
+      izquierda: Math.random() * 100,
+      color: [t.coral, '#e8b84b', t.white, '#9dbbac', t.forestDeep][id % 5],
+      ancho: 5 + Math.random() * 5,
+      alto: 9 + Math.random() * 8,
+      duracion: 4.5 + Math.random() * 5,
+      retraso: -Math.random() * 9,
+      deriva: `${Math.round(Math.random() * 160 - 80)}px`,
+      giro: `${Math.round(360 + Math.random() * 720)}deg`,
+    })),
+  )
+  return (
+    <div aria-hidden="true" className="pointer-events-none absolute inset-0 overflow-hidden">
+      {lista.map((p) => (
+        <span
+          className="confeti-pieza"
+          key={p.id}
+          style={{ left: `${p.izquierda}%`, width: p.ancho, height: p.alto, background: p.color, ['--duracion' as string]: `${p.duracion}s`, ['--retraso' as string]: `${p.retraso}s`, ['--deriva' as string]: p.deriva, ['--giro' as string]: p.giro }}
+        />
+      ))}
+    </div>
+  )
+}
+
 export function LoginScreen({ onLogin }: LoginScreenProps) {
   const [mode, setMode] = useState<Mode>('login')
   const [name, setName] = useState('')
@@ -75,7 +104,8 @@ export function LoginScreen({ onLogin }: LoginScreenProps) {
 
   return (
     <div className="@container">
-      <main className="flex min-h-svh flex-col *:min-w-0 @3xl:flex-row" style={{ background: t.forest, color: t.white, fontFamily: sans }}>
+      <main className="relative flex min-h-svh flex-col *:min-w-0 @3xl:flex-row" style={{ background: t.forest, color: t.white, fontFamily: sans }}>
+        <Confeti />
         <section className="relative flex min-h-[26svh] flex-col justify-between overflow-hidden px-6 pb-10 pt-6 @3xl:min-h-0 @3xl:flex-1 @3xl:px-14 @3xl:py-12">
           <img alt="" aria-hidden="true" className="pointer-events-none absolute inset-0 size-full object-cover" src="/parque-andres-bello.jpg" style={{ opacity: 0.32, mixBlendMode: 'luminosity' }} />
           <div aria-hidden="true" className="pointer-events-none absolute inset-0" style={{ background: `linear-gradient(180deg, rgba(47,93,80,0.25) 0%, rgba(47,93,80,0.55) 55%, ${t.forest} 100%)` }} />
@@ -95,6 +125,17 @@ export function LoginScreen({ onLogin }: LoginScreenProps) {
           </div>
 
           <div className="relative mt-6 @3xl:mt-0">
+            <div className="mb-4 inline-flex items-center gap-2.5 rounded-full border py-1.5 pl-2 pr-4 @3xl:mb-6" style={{ borderColor: 'rgba(232,184,75,0.55)', background: 'rgba(232,184,75,0.14)' }}>
+              <span className="medalla-premio grid size-8 shrink-0 place-items-center rounded-full" style={{ background: '#e8b84b', color: t.forestDeep }}>
+                <Medal aria-hidden="true" size={18} />
+              </span>
+              <span className="min-w-0">
+                <span className="block text-[14px] font-semibold leading-tight @3xl:text-[15px]">1.er lugar</span>
+                <span className="block text-[11px] leading-tight @3xl:text-xs" style={{ color: 'rgba(255,253,248,0.78)' }}>
+                  II Reto Emprende 2026 · CONTECS · UTP
+                </span>
+              </span>
+            </div>
             <h1 className="max-w-none text-[31px] font-medium leading-[1.05] tracking-[-0.02em] text-balance @3xl:max-w-[12ch] @3xl:text-[76px] @3xl:leading-[1]" style={{ fontFamily: serif }}>
               Una solución tecnológica
             </h1>
